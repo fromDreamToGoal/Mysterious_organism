@@ -13,11 +13,12 @@ const returnRandBase = () => {
     return newStrand
   }
   
-  
-  
-  
-  
-  
-  
-  
-  
+  //Returns an object that contains 15 basic DNA 
+const pAequorFactory = (num, arrDnaBases) => {
+  return {
+    _specimenNum: num,
+    _dna: arrDnaBases
+  }
+}
+
+console.log(pAequorFactory(5, mockUpStrand()))
