@@ -14,11 +14,21 @@ const returnRandBase = () => {
   }
   
   //Returns an object that contains 15 basic DNA 
-const pAequorFactory = (num, arrDnaBases) => {
+const pAequorFactory = (specimenNum, dna) => {
   return {
-    _specimenNum: num,
-    _dna: arrDnaBases
-  }
-}
+    specimenNum: specimenNum,
+    dna: dna,
+    mutate() {
+      const randomIndex = Math.floor(Math.random() * this.dna.length);
+      const currentBase = this.dna[randomIndex];
+      const bases = ['A', 'T', 'C', 'G'].filter(base => base !== currentBase);
+      const newBase = bases[Math.floor(Math.random() * bases.length)];
+      this.dna = this.dna.slice(0, randomIndex) + newBase + this.dna.slice(randomIndex + 1);
+      return this.dna;
+    }
+  };
+};
 
-console.log(pAequorFactory(5, mockUpStrand()))
+const pAequor = pAequorFactory(1, mockUpStrand());
+console.log(pAequor.dna);
+console.log(pAequor.mutate());
